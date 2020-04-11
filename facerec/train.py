@@ -48,7 +48,7 @@ def trainFace(model):
     
     persons = os.listdir(config.FACES_DIR)
     for person in persons:
-        manager.addUser(person)
+        # manager.addUser(person)
         user = manager.getUserByName(person)
         print user
         label = int(user['id'])

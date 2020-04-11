@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import os
 #coding=utf-8
 # Threshold for the confidence of a recognized face before it's considered a
@@ -61,3 +62,13 @@ TRAINING_FILE = TRAINING_DIR + '/training.xml'
 
 #user csv file
 USERS_CVS_FILE = BASE_DIR + '/facerec/training/users.csv'
+
+#email config
+RECEIVERS_EMAIL = ["XX@XX.com"]  # 收件人邮箱
+MAIL_HOST = "smtp.qq.com"  # 设置服务器
+MAIL_USER = "XXX"  # 发件邮箱用户名
+MAIL_PASS = "XXX"  # 发件邮箱口令
+MAIL_POSTFIX = "qq.com"  # 发件邮箱后缀
+
+# grabFaces dir
+GRAB_FACES_DIR = BASE_DIR + '/facerec/grabfaces'

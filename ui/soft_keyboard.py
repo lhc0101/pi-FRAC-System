@@ -202,11 +202,11 @@ class SoftInputWidget(QtGui.QDialog):
         widget_rect         = widget.rect()
         widget_bottom       = widget.mapToGlobal(QtCore.QPoint(widget.frameGeometry().x(), widget.frameGeometry().y())).y()
         screen_height       = QtGui.qApp.desktop().availableGeometry().height()
-        input_panel_height  = self.geometry().height() + 5
+        input_panel_height  = self.geometry().height() + 150
 
         if (screen_height - widget_bottom) > input_panel_height:
             # display input panel at bottom of widget
-            panelPos = QtCore.QPoint(widget_rect.left(), widget_rect.bottom() + 2)
+            panelPos = QtCore.QPoint(widget_rect.left(), widget_rect.bottom() + 70)
         else:
             # display input panel at top of widget
             panelPos = QtCore.QPoint(widget_rect.left(), widget_rect.top() - input_panel_height)

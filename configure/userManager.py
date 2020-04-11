@@ -16,7 +16,8 @@ class UserManager(object):
     users = []
     userIds = []
     userNames = []
-    fieldNames = ['userName', 'id']
+    userPsws = []
+    fieldNames = ['userName', 'id','userPsw']
     
     __CSVFile = config.USERS_CVS_FILE
 
@@ -39,7 +40,7 @@ class UserManager(object):
             
         return False
                 
-    def addUser(self, name):
+    def addUser(self, name, password):
         if self.hasUser(name):
             return False
         else:
@@ -47,9 +48,10 @@ class UserManager(object):
             if userIds == []:
                 newId = 1
             else:
+                userIds = map(int, userIds)
                 userIds.sort()
                 newId = int(userIds[len(userIds)-1]) + 1
-            newUser = {'userName':name, 'id':str(newId)}
+            newUser = {'userName':name, 'id':int(newId), 'userPsw':password}
             self.users.append(newUser)
             
             self.__writeCSV(newUser)
@@ -66,7 +68,7 @@ class UserManager(object):
             return True
         else:
             return False
-        
+    
     def deleteUser(self, userName):
         if self.hasUser(userName):
             userNames = self.getAllUserName()
@@ -92,6 +94,13 @@ class UserManager(object):
             if int(user['id']) == id:
                 return user
 
+    # 根据用户名获取密码
+    def getUserPswByName(self, name):
+        self.__readCSV()
+        for user in self.users:
+            if user['userName'] == name:
+                return user['userPsw']
+
     def getAllUser(self):
         self.__readCSV()
         return self.users
@@ -110,10 +119,12 @@ class UserManager(object):
         self.users = []
         self.userIds = []
         self.userNames = []
+        self.userPsws = []
         for row in self.reader:
             self.users.append(row)
             self.userIds.append(row['id'])
             self.userNames.append(row['userName'])
+            self.userPsws.append(row['userPsw'])
         self.csvIn.close()
 
     def __writeCSV(self, data):

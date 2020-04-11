@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 主程序，加载显示界面，载入识别模型等
 import sys
 import cv2
 
@@ -10,12 +11,12 @@ from PyQt4.QtGui import QApplication
 
 def main():
     
-    model = cv2.createLBPHFaceRecognizer()
+    model = cv2.createLBPHFaceRecognizer() #载入人脸识别模型
     model.load(config.TRAINING_FILE)
     
-    video = Video.Video(0)
-    video.setFrameSize(640, 480)
-    video.setFPS(30)
+    video = Video.Video(0)  #接受摄像头视频流
+    video.setFrameSize(640, 480)  #设置画面大小
+    video.setFPS(30) #设置视频帧率
     
     QtApp = QApplication(sys.argv)
     
